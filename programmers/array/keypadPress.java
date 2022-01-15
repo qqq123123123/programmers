@@ -2,6 +2,7 @@ package programmers.array;
 
 public class keypadPress {
     public static void main(String[] args) {
+        // https://programmers.co.kr/learn/courses/30/lessons/67256
         String answer = "";
         int[] numbers = new int[] {7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2};
         String hand = "left";
