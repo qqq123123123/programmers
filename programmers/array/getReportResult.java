@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class getReportResult {
     public static void main(String[] args) {
         //https://programmers.co.kr/learn/courses/30/lessons/92334
-        String[] id_list = new String[] {"muzi", "apeach", "frodo", "neo"};
+        String[] id_list = new String[] {"muzi", "frodo", "apeach", "neo"};
         String[] report = new String[] {"muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi"};
         int[] result = new int[id_list.length];
         int k = 2;
@@ -85,7 +85,11 @@ public class getReportResult {
     public static int[] solution2(String[] id_list, String[] report, int k)
     {
         /*
-        1. " "로 split해서 2차원 배열로 쪼개서 신고한놈, 신고당한놈 분리
+            ************시간 복잡도 개선하기**************
+        */
+        /*
+        1. 중복 제거 후 
+        2. " "로 split해서 2차원 배열로 쪼개서 신고한놈, 신고당한놈 분리
         */
         int[] answer = new int[id_list.length];
 
@@ -103,11 +107,11 @@ public class getReportResult {
         for(int i = 0; i < reportArrayList.size(); i++)
         {
             reportDB[i] = reportArrayList.get(i).split(" ");
-            System.out.println(reportDB[i][0] + " " + reportDB[i][1] + " 체크");
+            // System.out.println(reportDB[i][0] + " " + reportDB[i][1] + " 체크"); // 배열이 제대로 들어갔는지 체크
         }
 
-        HashMap <String, Integer> reportCountMap = new HashMap<String, Integer>();
-        HashMap <String, Integer> MailCountMap = new HashMap<String, Integer>();
+        HashMap <String, Integer> reportCountMap = new HashMap<String, Integer>(); // 신고횟수 카운트용
+        HashMap <String, Integer> MailCountMap = new HashMap<String, Integer>(); // 메일 회신 카운트용 (답안)
 
 
         for(int i = 0; i < id_list.length; i++)
@@ -129,17 +133,25 @@ public class getReportResult {
         */
         reportCountMap.forEach((key, value) ->
         {
-            String report11 = null;
             if(value >= k)
             {
-                for (int i = 0; i < reportDB.length; i++) {
+                for (int i = 0; i < reportDB.length; i++) 
+                {
+                    
+                    String report11 = null;
                     if(reportDB[i][1].equals(key))
                     {
                         report11 = reportDB[i][0];
+                        MailCountMap.put(report11, MailCountMap.get(report11) + 1);
                     }
                 }
             }
         });
+
+        for(int i = 0; i < answer.length; i++)
+        {
+            answer[i] = MailCountMap.get(id_list[i]);
+        }
 
         return answer;
     }
