@@ -6,6 +6,9 @@ import java.util.HashMap;
 
 public class getReportResult {
     public static void main(String[] args) {
+        /*
+           
+        */
         //https://programmers.co.kr/learn/courses/30/lessons/92334
         String[] id_list = new String[] {"muzi", "frodo", "apeach", "neo"};
         String[] report = new String[] {"muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi"};
