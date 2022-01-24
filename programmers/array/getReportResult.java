@@ -106,6 +106,7 @@ public class getReportResult {
             }
         }
 
+
         String[][] reportDB = new String[reportArrayList.size()][2];
         for(int i = 0; i < reportArrayList.size(); i++)
         {
@@ -129,27 +130,37 @@ public class getReportResult {
         }
 
         /*
-            string 전역변수 한개하고
-            k 2면 거기 넣고
+            value가 k보다 높으면
             for문 돌려서
             reportDB에서 reportDB[i][1] 이 key인 놈을 찾아서 숫자 
         */
+
+        ArrayList<String> tempArrList = new ArrayList<String>();
         reportCountMap.forEach((key, value) ->
         {
             if(value >= k)
             {
-                for (int i = 0; i < reportDB.length; i++) 
-                {
-                    
-                    String report11 = null;
-                    if(reportDB[i][1].equals(key))
-                    {
-                        report11 = reportDB[i][0];
-                        MailCountMap.put(report11, MailCountMap.get(report11) + 1);
-                    }
-                }
+                tempArrList.add(key);
             }
         });
+
+        Iterator iterator = tempArrList.iterator();
+        
+
+        // reportCountMap.forEach((key, value) ->
+        // {
+        //     if(value >= k)
+        //     {
+        //         for (int i = 0; i < reportDB.length; i++) 
+        //         {
+        //             if(reportDB[i][1].equals(key))
+        //             {
+        //                 MailCountMap.put(reportDB[i][0], MailCountMap.get(reportDB[i][0]) + 1);
+        //             }
+        //         }
+        //     }
+        // });
+
 
         for(int i = 0; i < answer.length; i++)
         {
