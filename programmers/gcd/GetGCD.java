@@ -7,7 +7,7 @@ public class GetGCD {
         int x = 100000000;
         int y = 100000000;
 
-        // 초고수의 공략법 ㄷㄷ BigInteger에 gcd 함수가 있다.
+        // 초고수의 공략법 ㄷㄷ BigInteger에 gcd 함수가 있다..
         // long cout = x + y - BigInteger.valueOf(x).gcd(BigInteger.valueOf(y)).longValue();
 
         System.out.println(Euclidean(x, y));
